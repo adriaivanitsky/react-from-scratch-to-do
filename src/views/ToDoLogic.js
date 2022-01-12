@@ -4,7 +4,7 @@ import { getToDos } from '../services/users';
 import { useState } from 'react';
 
 export default function ToDoLogic() {
-  const [task, setTask] = useState('');
+  // const [task, setTask] = useState('');
   const [todos, setTodos] = useState([]);
   const [click, setClick] = useState(false);
 
@@ -13,7 +13,6 @@ export default function ToDoLogic() {
       const data = await getToDos();
       setTodos(data);
       setClick(false);
-      console.log(data);
     };
     fetchToDos();
   }, [click]);
