@@ -4,6 +4,7 @@ import Authorize from './views/Authorize';
 import { getUser } from './services/users';
 import { useState } from 'react';
 import { logout } from './services/users';
+import ToDoLogic from './views/ToDoLogic';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
@@ -20,7 +21,7 @@ function App() {
             {currentUser ? (
               <div>
                 <button onClick={(e) => logoutUser(e.target.value)}>logout</button>
-                <h1>you did it!</h1>
+                <ToDoLogic />
               </div>
             ) : (
               <Authorize currentUser={currentUser} setCurrentUser={setCurrentUser} />

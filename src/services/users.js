@@ -24,3 +24,17 @@ export async function logout() {
   const response = await client.auth.signOut();
   return checkError(response);
 }
+
+export async function createToDo(task) {
+  const resp = await client.from('todos').insert([{ task: task, user_id: client.auth.user().id }]);
+  return checkError(resp);
+}
+
+export async function getToDos() {
+  const resp = await client.from('todos').select('*');
+  return checkError(resp);
+}
+
+// export async function deleteToDo()
+
+//update and delete functions needed
