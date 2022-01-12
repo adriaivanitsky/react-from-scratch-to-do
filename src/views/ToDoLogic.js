@@ -1,28 +1,43 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { getToDos } from '../services/users';
+import { getToDos, updateToDos } from '../services/users';
 import { useState } from 'react';
+import { createToDo } from '../services/users';
 
 export default function ToDoLogic() {
-  // const [task, setTask] = useState('');
+  const [newTask, setNewTask] = useState('');
   const [todos, setTodos] = useState([]);
-  const [click, setClick] = useState(false);
 
   useEffect(() => {
     const fetchToDos = async () => {
       const data = await getToDos();
       setTodos(data);
-      setClick(false);
     };
     fetchToDos();
-  }, [click]);
+  }, []);
+
+  async function handleClick(todo) {
+    await updateToDos(todo.id, todo.is_complete);
+  }
+
+  async function handleSubmit() {
+    await createToDo(newTask);
+    setNewTask();
+  }
+
   return (
     <div>
-      <input type="text"></input>
-      <button onClick={() => setClick(true)}>add task</button>
+      <input value={newTask} type="text" onChange={(e) => setNewTask(e.target.value)}></input>
+      <button onClick={handleSubmit}>add task</button>
       {todos.map((item) => (
         <div key={item.id}>
-          <input checked={item.is_complete} type="checkbox"></input>
+          <input
+            checked={item.is_complete}
+            type="checkbox"
+            onChange={() => {
+              handleClick(item);
+            }}
+          ></input>
           <p>{item.task}</p>
         </div>
       ))}

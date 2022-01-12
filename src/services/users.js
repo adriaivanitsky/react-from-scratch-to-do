@@ -35,6 +35,9 @@ export async function getToDos() {
   return checkError(resp);
 }
 
-// export async function deleteToDo()
+export async function updateToDos(id, is_complete) {
+  const resp = await client.from('todos').update({ is_complete }).eq('id', id);
+  return checkError(resp);
+}
 
-//update and delete functions needed
+// export async function deleteToDo()
