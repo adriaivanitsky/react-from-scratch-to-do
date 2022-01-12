@@ -17,12 +17,16 @@ export default function ToDoLogic() {
   }, []);
 
   async function handleClick(todo) {
-    await updateToDos(todo.id, todo.is_complete);
+    await updateToDos(todo.id, !todo.is_complete);
+    const data = await getToDos();
+    setTodos(data);
   }
 
   async function handleSubmit() {
     await createToDo(newTask);
-    setNewTask();
+    const data = await getToDos();
+    setTodos(data);
+    setNewTask('');
   }
 
   return (

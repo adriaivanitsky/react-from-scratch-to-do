@@ -40,4 +40,7 @@ export async function updateToDos(id, is_complete) {
   return checkError(resp);
 }
 
-// export async function deleteToDo()
+export async function deleteTask(id) {
+  const resp = await client.from('todos').delete(id);
+  return checkError(resp);
+}
