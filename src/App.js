@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/">
             {currentUser ? (
               <div>
-                <button onClick={(e) => logoutUser(e.target.value)}>logout</button>
+                <h1 onClick={(e) => logoutUser(e.target.value)}>logout</h1>
                 <ToDoLogic />
               </div>
             ) : (

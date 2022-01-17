@@ -1,4 +1,5 @@
 import React from 'react';
+import './authorizeForm.css';
 
 export default function AuthorizeForm({ email, setEmail, password, setPassword, formHandler }) {
   return (

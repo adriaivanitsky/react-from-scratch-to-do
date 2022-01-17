@@ -6,4 +6,11 @@ header {
 
 header > * {
   margin: 10px;
+  cursor: pointer;
+  color: lightsteelblue;
+}
+
+.active {
+  color: navy;
+  text-decoration: underline;
 }

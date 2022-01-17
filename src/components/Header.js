@@ -1,15 +1,16 @@
 import React from 'react';
-import { logout } from '../services/users';
 import './header.css';
+import activeClass from 'classnames';
 
-export default function Header({ setType }) {
+export default function Header({ setType, type }) {
   return (
     <header>
-      <button onClick={() => setType('signIn')}>login </button>
-      <button onClick={() => setType('signUp')}>sign up</button>
-      <button id="logout" onClick={logout}>
-        logout
-      </button>
+      <h1 className={activeClass({ active: type === 'signIn' })} onClick={() => setType('signIn')}>
+        login{' '}
+      </h1>
+      <h1 className={activeClass({ active: type === 'signUp' })} onClick={() => setType('signUp')}>
+        sign up
+      </h1>
     </header>
   );
 }
