@@ -1,8 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { getToDos, updateToDos } from '../services/users';
+import { getToDos, updateToDos, createToDo, deleteTasks } from '../services/users';
 import { useState } from 'react';
-import { createToDo } from '../services/users';
 
 export default function ToDoLogic() {
   const [newTask, setNewTask] = useState('');
@@ -29,6 +28,12 @@ export default function ToDoLogic() {
     setNewTask('');
   }
 
+  async function handleDelete() {
+    await deleteTasks();
+    const data = await getToDos();
+    setTodos(data);
+  }
+
   return (
     <div>
       <input value={newTask} type="text" onChange={(e) => setNewTask(e.target.value)}></input>
@@ -42,9 +47,10 @@ export default function ToDoLogic() {
               handleClick(item);
             }}
           ></input>
-          <p>{item.task}</p>
+          <span>{item.task}</span>
         </div>
       ))}
+      <button onClick={handleDelete}>delete</button>
     </div>
   );
 }

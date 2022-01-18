@@ -10,6 +10,6 @@ form > * {
   display: block;
 }
 
-input {
+input [type='submit'] {
   width: 200px;
 }
